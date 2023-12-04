@@ -6,13 +6,10 @@ pub fn print_solution() {
     let lines = input.split("\n").collect::<Vec<&str>>();
 
     println!(
-        "\n---\nAnswere to part one: {}\n---",
+        "\n--- Day1 ---\n---\nAnswere to part one: {}\n---",
         part_one(lines.clone())
     );
-    println!(
-        "\n---\nAnswere to part two: {}\n---",
-        part_two(lines.clone())
-    );
+    println!("Answere to part two: {}\n---", part_two(lines.clone()));
 }
 
 fn part_one(lines: Vec<&str>) -> String {
@@ -82,7 +79,6 @@ fn part_two(lines: Vec<&str>) -> String {
         elements.push(vec.first().unwrap() * 10 + vec.last().unwrap());
     }
 
-    println!("{:?}", elements);
     let sum: i32 = elements.iter().sum();
 
     return sum.to_string();
