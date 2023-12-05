@@ -1,5 +1,4 @@
 use crate::read_input;
-use std::collections::HashMap;
 
 pub fn print_solution() {
     static DAY: &str = "day2";
@@ -74,5 +73,42 @@ fn part_one(lines: Vec<&str>) -> String {
 }
 
 fn part_two(lines: Vec<&str>) -> String {
+    let mut power_sum: i32 = 0;
+
+    for line in lines {
+        let game: Vec<&str> = line.split(": ").collect();
+
+        let mut red_cubes = 0;
+        let mut green_cubes = 0;
+        let mut blue_cubes = 0;
+
+        for round in game[1].split("; ") {
+            let cubes: Vec<&str> = round.split(", ").collect();
+            for cube in cubes {
+                let result: Vec<&str> = cube.split_whitespace().collect();
+                let number: i32 = result[0].parse::<i32>().unwrap();
+                match result[1] {
+                    "red" => {
+                        if number > red_cubes {
+                            red_cubes = number;
+                        }
+                    }
+                    "green" => {
+                        if number > green_cubes {
+                            green_cubes = number;
+                        }
+                    }
+                    "blue" => {
+                        if number > blue_cubes {
+                            blue_cubes = number;
+                        }
+                    }
+                    _ => {}
+                }
+            }
+        }
+        power_sum += red_cubes * green_cubes * blue_cubes;
+    }
+    println!("{}", power_sum);
     return "###NOT DONE###".to_string();
 }
