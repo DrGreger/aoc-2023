@@ -6,7 +6,7 @@ pub fn print_solution() {
     let lines = input.split("\n").collect::<Vec<&str>>();
 
     println!(
-        "\n--- Day1 ---\n---\nAnswere to part one: {}\n---",
+        "\n--- Day1 ---\nAnswere to part one: {}\n",
         part_one(lines.clone())
     );
     println!("Answere to part two: {}\n---", part_two(lines.clone()));
