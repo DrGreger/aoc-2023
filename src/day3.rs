@@ -12,9 +12,20 @@ pub fn print_solution() {
 }
 
 fn part_one(lines: Vec<&str>) -> String {
+    let mut matrix: Vec<Vec<char>> = create_matrix(lines);
+
+    println!("\n{}", matrix[0][1]);
     return "###NOT DONE###".to_string();
 }
 
 fn part_two(lines: Vec<&str>) -> String {
     return "###NOT DONE###".to_string();
+}
+
+fn create_matrix(lines: Vec<&str>) -> Vec<Vec<char>> {
+    let mut matrix: Vec<Vec<char>> = Vec::new();
+    for line in lines {
+        matrix.push(line.chars().collect());
+    }
+    return matrix;
 }
