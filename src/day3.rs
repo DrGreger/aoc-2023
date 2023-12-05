@@ -1,9 +1,7 @@
 use crate::read_input;
-use std::cmp::max;
-use std::cmp::min;
 
 pub fn print_solution() {
-    static DAY: &str = "day3_ex";
+    static DAY: &str = "day3";
     let input = read_input(DAY);
     let lines = input.split("\n").collect::<Vec<&str>>();
 
@@ -16,6 +14,7 @@ pub fn print_solution() {
 fn part_one(lines: Vec<&str>) -> String {
     let matrix: Vec<Vec<char>> = create_matrix(lines);
     let mut total_sum = 0;
+    println!("Matrix size {} x {}", matrix.len(), matrix[0].len());
 
     for row in 0..matrix.len() {
         let mut col = 0;
@@ -28,7 +27,7 @@ fn part_one(lines: Vec<&str>) -> String {
                     for i in 0..len {
                         s.push(matrix[row][col + i])
                     }
-                    println!("Found number {} in row {}", s.parse::<i32>().unwrap(), row);
+                    // println!("Found number {} in row {}", s.parse::<i32>().unwrap(), row);
                     total_sum += s.parse::<i32>().unwrap();
                 }
                 col += len;
@@ -36,8 +35,7 @@ fn part_one(lines: Vec<&str>) -> String {
             col += 1;
         }
     }
-    println!("\n{}", total_sum);
-    return "###NOT DONE###".to_string();
+    return format!("{}", total_sum);
 }
 
 fn part_two(lines: Vec<&str>) -> String {
@@ -73,17 +71,23 @@ fn check_neighbors(matrix: &Vec<Vec<char>>, row: usize, col: usize, len: usize) 
         col + len + 1
     };
     let row_min = if row == 0 { 0 } else { row - 1 };
-    let row_max = if row == matrix.len() { row } else { row + 2 };
-
-    println!("Checking row {} col {}", row, col);
+    let row_max = if row + 1 == matrix.len() {
+        row + 1
+    } else {
+        row + 2
+    };
+    println!(
+        "row {}, max {}, min {}\ncol {}, max {}, min {}",
+        row, row_max, row_min, col, col_max, col_min
+    );
+    // println!("Checking row {} col {}", row, col);
     for i in row_min..row_max {
         for j in col_min..col_max {
-            print!("{}", matrix[i][j]);
+            // print!("{}", matrix[i][j]);
             if matrix[i][j] != '.' && !matrix[i][j].is_numeric() {
                 return true;
             }
         }
-        print!("\n")
     }
     return false;
 }
