@@ -15,12 +15,6 @@ fn part_one(lines: Vec<&str>) -> String {
     static RED_MAX: i8 = 12;
     static GREEN_MAX: i8 = 13;
     static BLUE_MAX: i8 = 14;
-    // for line in lines {
-    //     let parts = line.split(":");
-    //     for part in parts {
-    //         println!("{}", part);
-    //     }
-    // }
     let mut id_sum: i32 = 0;
 
     for line in lines {
@@ -34,21 +28,18 @@ fn part_one(lines: Vec<&str>) -> String {
                 match result[1] {
                     "red" => {
                         if result[0].parse::<i8>().unwrap() > RED_MAX {
-                            // println!("Broke on too many red");
                             did_break = true;
                             break;
                         }
                     }
                     "green" => {
                         if result[0].parse::<i8>().unwrap() > GREEN_MAX {
-                            // println!("Broke on too many green");
                             did_break = true;
                             break;
                         }
                     }
                     "blue" => {
                         if result[0].parse::<i8>().unwrap() > BLUE_MAX {
-                            // println!("Broke on too many blue");
                             did_break = true;
                             break;
                         }
@@ -64,11 +55,9 @@ fn part_one(lines: Vec<&str>) -> String {
             continue;
         } else {
             let game: Vec<&str> = parts[0].split_whitespace().collect();
-            // println!("Adding game {} to the sum", game[1].parse::<i32>().unwrap());
             id_sum += game[1].parse::<i32>().unwrap();
         }
     }
-    // println!("{}", id_sum);
     return format!("{}", id_sum);
 }
 
@@ -109,6 +98,6 @@ fn part_two(lines: Vec<&str>) -> String {
         }
         power_sum += red_cubes * green_cubes * blue_cubes;
     }
-    println!("{}", power_sum);
-    return "###NOT DONE###".to_string();
+
+    return format!("{}", power_sum);
 }
