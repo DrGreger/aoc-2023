@@ -5,15 +5,23 @@ pub fn print_solution() {
     let input = read_input(DAY);
     let lines = input.split("\n").collect::<Vec<&str>>();
 
-    print!("\n--- {} ---\nAnswere to part one: ", DAY,);
+    print!("\n--- {} ---\nAnswere to part one: \n", DAY,);
     println!("{}", part_one(lines.clone()));
     print!("\nAnswere to part two: ");
     println!("{}\n---", part_two(lines.clone()))
 }
 
 fn part_one(lines: Vec<&str>) -> String {
-    let mut matrix: Vec<Vec<char>> = create_matrix(lines);
+    let matrix: Vec<Vec<char>> = create_matrix(lines);
 
+    for (i, row) in matrix.iter().enumerate() {
+        for (col, symbol) in row.iter().enumerate() {
+            if symbol.is_numeric() {
+                let len = get_number_len(&row, col);
+                println!("Found number of length {} in row {}", len, i)
+            }
+        }
+    }
     println!("\n{}", matrix[0][1]);
     return "###NOT DONE###".to_string();
 }
@@ -28,4 +36,17 @@ fn create_matrix(lines: Vec<&str>) -> Vec<Vec<char>> {
         matrix.push(line.chars().collect());
     }
     return matrix;
+}
+
+fn get_number_len(row: &Vec<char>, col: usize) -> i32 {
+    let mut length: i32 = 0;
+    for index in col..row.len() {
+        if row[index].is_numeric() {
+            println!("it's numeric see {}", row[index]);
+            length += 1;
+        } else {
+            break;
+        }
+    }
+    return length;
 }
