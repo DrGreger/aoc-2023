@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: aoc-2023
+  annotations:
+    github.com/project-slug: DrGreger/aoc-2023
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
